@@ -24,7 +24,7 @@ def main():
             regionOfInterest = frame[y:y+h, x:x+w]
             resized = cv2.resize(regionOfInterest, dimensions, interpolation=cv2.INTER_AREA)
             background[0:HEIGHT, WIDTH:] = resized
-            color = (255, 0, 0)
+            color = (0, 0, 255)
             stroke = 2
             cv2.rectangle(frame, (x, y), (w + x, h + y), color, stroke)
             
