@@ -1,3 +1,4 @@
+import numpy as np
 import sqlite3
 import cv2
 
@@ -13,12 +14,19 @@ def setCamera(id, width, height):
     return cam
 
 def main():
-    cam = setCamera(0, 500, 500)
+    WIDTH = 640
+    HEIGHT = 480
+    background = np.zeros((HEIGHT, WIDTH * 2, 3), dtype=np.uint8) # img null
+    cam = setCamera(0, WIDTH, HEIGHT)
 
     while True:
         ret, frame = cam.read()
-        cv2.imshow('WEBCAM', frame)
+        
+        background[0:HEIGHT, 0:WIDTH] = frame
 
+        cv2.imshow('WEBCAM', background)
+
+        cv2.waitKey(50)
         if cv2.getWindowProperty('WEBCAM', cv2.WND_PROP_VISIBLE) < 1:
             break
 
