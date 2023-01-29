@@ -5,3 +5,4 @@ Inspirado no tutorial: https://www.youtube.com/watch?v=iBomaK2ARyI
 - Python 3.10 
 - SQLite 3
 - opencv-python 4.7.0.68
+- Pillow 9.4.0 
