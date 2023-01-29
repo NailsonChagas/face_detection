@@ -4,22 +4,22 @@ import cv2
 DB_CONNECTION = sqlite3.connect('./db/cv.db')
 DB_CURSOR = DB_CONNECTION.cursor()
 
-def main():
-    cam = cv2.VideoCapture(0)
-    width = 500
-    height = 500
+def setCamera(id, width, height):
+    cam = cv2.VideoCapture(id)
     cam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
     cam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-
     if not cam.isOpened():
         raise IOError("Cannot open webcam")
+    return cam
+
+def main():
+    cam = setCamera(0, 500, 500)
 
     while True:
         ret, frame = cam.read()
         cv2.imshow('WEBCAM', frame)
 
-        c = cv2.waitKey(1)
-        if c == 27:
+        if cv2.getWindowProperty('WEBCAM', cv2.WND_PROP_VISIBLE) < 1:
             break
 
     cam.release()
